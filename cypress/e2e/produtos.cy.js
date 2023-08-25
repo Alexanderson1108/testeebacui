@@ -14,7 +14,7 @@ describe('funcionalidade produtos', () => {
         //contain(" nome doproduto") caso queira algum produto especifico
     });
 
-    it.only('deve adicionar um produto ao carrinho', () => {
+    it('deve adicionar um produto ao carrinho', () => {
         var quantidade = 3
         cy.get('[class="product-block grid"]').first().click()
         cy.get('.button-variable-item-L').click()
@@ -25,6 +25,14 @@ describe('funcionalidade produtos', () => {
         cy.get('.dropdown-toggle > .mini-cart-items').should('contain' , quantidade)
         cy.get('.woocommerce-message').should('contain' , quantidade )
 
+    });
+
+    it('deve add produtos ao carrinho cm costomizado', () => {
+        cy.addProduto('Abominable Hoodie', 'M', 'Blue', 3)
+    });
+
+    it.only('deve add produtos ao carrinho cm costomizado', () => {
+        cy.addProduto('Atlas Fitness Tank', 'S', 'Blue', 3)
     });
 
 });
